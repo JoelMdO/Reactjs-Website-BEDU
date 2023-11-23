@@ -1,0 +1,39 @@
+.signup-button-page {
+    text-align: center;
+    border-radius: 50px;
+    padding: 5px;
+    width: 12vw;
+    height: 7vh;
+    margin-bottom: 20px;
+    cursor: pointer;
+    font-family: 'Inria Sans';
+    background-color: black;
+    position: absolute;
+    top: 96%;
+    left: 55%;
+    font-size: 46px;
+    color: #FDD506;
+    cursor: pointer;
+    border: 8px solid gainsboro;
+    box-shadow: -10px -5px goldenrod inset;
+}
+
+.signup-button-page:hover {
+    scale: 1.1;
+    border-radius: 50px;
+    padding: 5px;
+    width: 12vw;
+    height: 7vh;
+    font-family: 'Inria Sans';
+    margin-bottom: 20px;
+    cursor: pointer;
+    background-color: orange;
+    position: absolute;
+    top: 91%;
+    left: 55%;
+    font-size: 46px;
+    color: black;
+    cursor: pointer;
+    border: 8px solid gainsboro;
+    box-shadow: -10px -5px goldenrod inset;
+}

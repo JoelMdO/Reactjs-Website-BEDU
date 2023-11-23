@@ -1,0 +1,54 @@
+.logo#logo-left {
+    width: 3.5vw;
+    height: 7vh;
+    position: fixed;
+    top: 5%;
+    right: 3%;
+}
+
+.logo#logo-right {
+    width: 3.5vw;
+    height: 7vh;
+    position: absolute;
+    top: 8%;
+    right: 3%;
+}
+
+.logo-tooltip {
+    display: none;
+    position: absolute;
+    top: 105%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: black;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    font-size: 16px;
+    align-items: center;
+    text-align: center;
+    color: white;
+    width: 90px;
+    height: 70px;
+}
+
+.logo:hover {
+    transform: scale(1.2);
+}
+
+.logo:hover .logo-tooltip {
+    display: block;
+}
+
+.logo {
+    padding: 0;
+    border: none;
+    background: url(../../../assets/Jcode.png) no-repeat center center;
+    background-size: contain;
+    cursor: pointer;
+}
+
+.logo-yellow {
+    color: #FDD506;
+}

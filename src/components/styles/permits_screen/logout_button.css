@@ -1,0 +1,44 @@
+.blue-airplane-tooltip {
+    display: none;
+    position: absolute;
+    top: 85%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: black;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    font-size: 16px;
+    align-items: center;
+    max-width: 50%;
+    text-align: center;
+    color: white;
+    width: 70px;
+    height: 40px;
+}
+
+.blue-airplane-button:hover {
+    transform: scale(1.5);
+}
+
+.blue-airplane-button:hover .blue-airplane-tooltip {
+    display: block;
+}
+
+.blue-airplane-button {
+    position: absolute;
+    top: 6%;
+    right: 8%;
+    padding: 0;
+    border: none;
+    background: url(../../../assets/blueairplane.svg) no-repeat center center;
+    background-size: contain;
+    width: 10vw;
+    height: 10vh;
+    cursor: pointer;
+}
+
+.blue-airplane-yellow {
+    color: #FDD506;
+}

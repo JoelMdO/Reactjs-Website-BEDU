@@ -1,0 +1,54 @@
+.welcome-signup-frame {
+    position: absolute;
+    top: 30%;
+    left: 15%;
+    width: 45vw;
+    height: 20vw;
+    border: 5px solid goldenrod inset;
+    border-radius: 20px;
+    background-color: grey;
+    z-index: 1;
+}
+
+.welcome-signup {
+    position: absolute;
+    top: 17px;
+    left: 25px;
+    width: 40vw;
+    height: 40vh;
+}
+
+.welcome-signup-text {
+    position: absolute;
+    top: 40%;
+    left: 10%;
+    font-family: 'Inria Sans';
+    font-size: 45px;
+    color: white;
+    white-space: pre-line;
+}
+
+.welcome-signup-button-close {
+    position: absolute;
+    bottom: 10%;
+    right: 5%;
+    width: 5vw;
+    height: 5vh;
+    font-size: 20px;
+    color: #000;
+    font-family: 'Inria Sans';
+    background-color: aqua;
+    border-radius: 20px;
+    box-shadow: -5px -5px black;
+    cursor: pointer;
+}
+
+.white-signup-square {
+    width: 25vw;
+    height: 29vh;
+    position: absolute;
+    background-color: white;
+    opacity: 75%;
+    right: 165px;
+    top: 137px;
+}

@@ -1,0 +1,32 @@
+.login-button,
+.try-free-button,
+.sign-up-button {
+    text-align: center;
+    font-size: 40px;
+    border-radius: 50px;
+    padding: 5px;
+    width: 12vw;
+    height: 7vh;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.login-button {
+    background-color: #79B4DF;
+    color: white;
+    border: 2px solid #79B4DF;
+    box-shadow: 10px 10px #0695FD inset;
+}
+
+.sign-up-button {
+    background-color: #0695FD;
+    color: white;
+    border: 2px solid #0695FD;
+    box-shadow: 10px 10px #79B4DF inset;
+}
+
+.try-free-button {
+    background-color: #FDD506;
+    border: 2px solid #FDD506;
+    box-shadow: 10px 10px goldenrod inset;
+}

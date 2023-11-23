@@ -1,0 +1,31 @@
+.title-container-left,
+.title-container-right {
+    background-color: black;
+    width: 45vw;
+    height: 80px;
+    position: fixed;
+    display: flex;
+    align-items: center;
+}
+
+.title-container-left {
+    justify-content: flex-start;
+    z-index: 1;
+
+}
+
+.title-container-right {
+    justify-content: center;
+    text-align: center;
+    right: 0;
+    z-index: 1;
+
+}
+
+.title-text {
+    padding-left: 75px;
+    color: white;
+    font-family: sans-serif;
+    font-size: 50px;
+    z-index: 1;
+}

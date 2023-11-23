@@ -1,0 +1,338 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap");
+
+$colors: (
+    background: transparent,
+    content: #FDD506,
+    title: white
+);
+
+$font: (
+    family: 'IBM Plex Sans',
+    sizetitle: 40px,
+    sizebody: 24px,
+    letter-spacing: 4px,
+    size: 24px
+);
+
+$config: (
+    animated: false,
+    nb-letters: 16,
+    animation-length: 4s,
+    mask-letters: ("A", "B", "C", "D", "E", "F", "T", "3", "5", "l", "P", "R", "G", "W", "2", "N")
+);
+
+// .........................
+
+@function color($value) {
+    @return map-get($colors, $value);
+}
+
+@function font($value) {
+    @return map-get($font, $value);
+}
+
+@function config($value) {
+    @return map-get($config, $value);
+
+}
+
+
+@function random-string($list) {
+    $result: null;
+    $remaining: $list;
+
+    @for $i from 1 through length($list) {
+        $random: random(length($remaining));
+        @debug "random";
+        @debug $random;
+        $current: nth($remaining, $random);
+        $currentCharacter: (
+            $current
+        );
+    $result: $result#{$currentCharacter};
+    $remaining: remove-nth($remaining, $random);
+}
+}
+
+
+@function remove-nth($list, $index) {
+    $result: (
+    );
+
+@for $i from 1 through length($list) {
+    @if $i !=$index {
+        $result: append($result, nth($list, $i));
+    }
+}
+
+@return $result;
+}
+
+@mixin respond-to($breakpoint) {
+    @if type-of($breakpoint)==list {
+        @media (min-width: nth($breakpoint, 1)) and (max-width: nth($breakpoint, 2)) {
+            @content;
+        }
+    }
+
+    @else {
+        @media (max-width: $breakpoint) {
+            @content;
+        }
+    }
+}
+
+@mixin animate ($fontSize) {
+    $content-sequence: config(mask-letters);
+
+    @for $i from 1 through config(nb-letters) {
+        $length: length(config(mask-letters));
+        $random: random($length);
+        $steps: $random - 1;
+        $offset: font(size) * $steps * -1;
+        $delay: calc(random(100) / 100);
+        $duration: $steps * (calc(config(animation-length) / length(config(mask-letters))));
+        $content: nth($content-sequence, $i);
+
+        .letter:nth-child(#{$i}):before {
+            content: $content;
+            margin-top: $offset;
+            animation-name: letter#{$i};
+            animation-duration: $duration + ($duration * $delay);
+            animation-delay: $delay * 1s;
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes letter#{$i} {
+            0% {
+                margin-top: 0
+            }
+
+            20% {
+                margin-top: 0;
+            }
+
+            50% {
+                margin-top: $offset;
+            }
+
+            100% {
+                margin-top: $fontSize;
+            }
+        }
+    }
+}
+
+@keyframes home-div {
+    0% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(100%);
+        opacity: 1;
+    }
+
+}
+
+//.......................................
+
+.wrapper {
+    text-align: center;
+}
+
+.wrapper-home-screen {
+    text-align: center;
+    background: linear-gradient(to right, grey, yellow, yellow);
+    border: 5px solid black;
+    border-radius: 15px;
+    position: absolute;
+    top: 25%;
+    left: 20%;
+    width: 58vw;
+    height: 10vh;
+}
+
+.wrapper#table-cell {
+    @include animate(map-get($font, sizebody));
+}
+
+.wrapper#country_name {
+    position: absolute;
+    top: 60px;
+    left: 240px;
+    @include animate(map-get($font, sizetitle))
+}
+
+.wrapper#home-screen {
+    text-align: center;
+    @include animate(map-get($font, sizetitle))
+}
+
+.letters {
+    display: inline-block;
+    text-align: center;
+
+}
+
+.letters-home-screen {
+    display: inline-block;
+    text-align: center;
+}
+
+
+.letter#table-cell,
+.letter#country_name {
+    font-family: map-get($font, family);
+    font-weight: 600;
+    overflow: hidden;
+}
+
+.letter#table-cell {
+    font-size: map-get($font, sizebody);
+    color: map-get($colors, content);
+    line-height: map-get($font, sizebody);
+}
+
+.letter#country_name {
+    font-size: map-get($font, sizetitle);
+    color: map-get($colors, title);
+    line-height: 160px;
+    width: 45px;
+}
+
+.letter#home-screen {
+    font-family: map-get($font, family);
+    font-weight: 600;
+    overflow: hidden;
+    font-size: 45px;
+    color: map-get($colors, content);
+    line-height: map-get($font, sizetitle);
+    width: 65px;
+    height: 43px;
+    background-color: black;
+    animation: home-div 0.5s ease-out forwards;
+}
+
+.letter {
+    width: font(size);
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    top: 30px;
+    overflow: hidden;
+    margin: 0 ceil(calc(font(letter-spacing) / 2));
+    text-transform: uppercase;
+
+    @include respond-to(625px) {
+        font-size: 16px;
+        width: 18px;
+    }
+
+    &:before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        word-break: break-all;
+    }
+}
+
+.content_container_list {
+    margin-top: 0;
+    padding-left: 110px;
+    text-align: left;
+    list-style: none;
+    -webkit-animation-name: opacity;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-iteration-count: infinite;
+    animation-name: change;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+}
+
+.content__container__list__item {
+    line-height: 40px;
+    margin: 0;
+}
+
+@-webkit-keyframes change {
+
+    0%,
+    12.66%,
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    16.66%,
+    29.32% {
+        transform: translate3d(0, -25%, 0);
+    }
+
+    33.32%,
+    45.98% {
+        transform: translate3d(0, -50%, 0);
+    }
+
+    49.98%,
+    62.64% {
+        transform: translate3d(0, -75%, 0);
+    }
+
+    66.64%,
+    79.3% {
+        transform: translate3d(0, -50%, 0);
+    }
+
+    83.3%,
+    95.96% {
+        transform: translate3d(0, -25%, 0);
+    }
+}
+
+@keyframes opacity {
+
+    0%,
+    100% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes change {
+
+    0%,
+    12.66%,
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    16.66%,
+    29.32% {
+        transform: translate3d(0, -25%, 0);
+    }
+
+    33.32%,
+    45.98% {
+        transform: translate3d(0, -50%, 0);
+    }
+
+    49.98%,
+    62.64% {
+        transform: translate3d(0, -75%, 0);
+    }
+
+    66.64%,
+    79.3% {
+        transform: translate3d(0, -50%, 0);
+    }
+
+    83.3%,
+    95.96% {
+        transform: translate3d(0, -25%, 0);
+    }
+}
