@@ -2,20 +2,21 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import welcome from '../../../assets/Welcome.svg';
 import "../../styles/login_sceen/login_answer.css";
-import { useDispatch } from 'react-redux';
-import { getToken } from '../../../app/actions';
 import { useNavigate } from "react-router-dom";
 
 const LoginAnswer = () => {
 
-    const dispatch = useDispatch();
     const navigate = useNavigate();
-    const [welcomeMessage, setWelcomeMessage] = useState('Under development');
+    let storeToken = '';
+    let tokenlength = '';
+    const [welcomeMessage, setWelcomeMessage] = useState('');
     const username = useSelector((state) => state.user);
     const password = useSelector((state) => state.password);
     const [getData, setGetData] = useState([]);
 
-    const url = `${process.env_REACT_APP_HOST}/login`;
+
+    // const url = 'https://nodejs-api-airportsdb.uc.r.appspot.com/login';
+    const url = 'http://localhost:8080/login';
 
     useEffect(() => {
         const fetchData = async () => {
@@ -26,35 +27,44 @@ const LoginAnswer = () => {
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ username, password }),
                     }
+                    const response = await fetch(url, bodyLogIn);
+                    const data = await response.json()
+                    setGetData(data);
 
-                    await fetch(url, bodyLogIn)
-                        .then((response) => response.json())
-                        .then((data) => {
-
-                            setGetData({ jwt: data.jwt });
-                        });
-                    if (!getData) {
-                        setWelcomeMessage("Unable to login\nPlease review your credentials");
-
-                    } else {
+                    console.log(`fetch`, fetch);
+                    console.log(`data.jwt:`, data.jwt);
+                    if (data.jwt != !data.jwt) {
                         setWelcomeMessage("Welcome back!\n\n\n\nClose the window to continue..");
-                        storeToken = localStorage.setItem(getData);
-
+                        console.log(`getDatatoken:`, getData.jwt)
+                        localStorage.setItem('token:', JSON.stringify(data.jwt));
+                        storeToken = data.jwt;
+                        tokenlength = storeToken.length;
+                        console.log(`length:`, tokenlength)
+                        console.log(`storetoken`, storeToken);
+                    }
+                    if (data.message === "User or password incorrect") {
+                        setWelcomeMessage("Unable to login\nPlease review your credentials");
+                    } else if (!data.jwt) {
+                        setWelcomeMessage(`Server Error!\n\n\n\nClose the window and try again later..`);
+                    } else if (!response.ok) {
+                        setWelcomeMessage(`Server Error!\n\n\n\nClose the window and try again later..`);
                     }
                 } else {
                     setWelcomeMessage("Unable to login\nPlease review your credentials");
-
                 }
             } catch (e) {
-
+                setWelcomeMessage(`Server unavailable\n\n\n\nClose the window and try again later..`);
             }
         };
         fetchData();
     }, [username, password, url]);
 
     const handleClose = () => {
-        dispatch(getToken(storeToken));
-        navigate('/permits')
+        if (getData.jwt) {
+            navigate('/permits')
+        } else {
+            navigate('/')
+        }
     };
 
     return (

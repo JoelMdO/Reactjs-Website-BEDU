@@ -14,7 +14,8 @@ const SignupAnswer = () => {
 
     const [getData, setGetData] = useState([]);
 
-    const url = `${process.env.REACT_APP_HOST}/createUser`;
+    // const url = 'https://nodejs-api-airportsdb.uc.r.appspot.com/createUser';
+    const url = 'http://localhost:8080/createUser';
 
 
     useEffect(() => {
@@ -26,30 +27,28 @@ const SignupAnswer = () => {
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ username, password, email }),
                     }
-
                     await fetch(url, bodyLogIn)
                         .then((response) => response.json())
                         .then((data) => {
-
                             setGetData(data);
                         })
                         .catch((error) => {
                             if (getData.message == "Please review the 3 fields are inserted correctly") {
                                 setWelcomeMessage("Please review if the 3 fields\nare inserted correctly");
-
+                            } else {
+                                console.error('Error fetching data', error);
+                                setWelcomeMessage('Server Connection error\nTry again later');
                             }
                         });
-
                     if (getData.message == "Succesfully Created") {
                         setWelcomeMessage("Welcome to the Club!\n\n\n\nClose the window to continue..");
-
                     }
                 } else {
                     setWelcomeMessage("Unable to Signup!\n\n\n\nTry again later..");
-
                 }
             } catch (e) {
-
+                console.error('Error fetching data', error);
+                setWelcomeMessage('Server Connection error\nTry again later');
             }
         };
         fetchData();

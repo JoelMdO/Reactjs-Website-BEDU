@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import '../../styles/permits_screen/Sass/main.scss';
+import '../../styles/permits_screen/main.css';
 import '../../styles/home_screen/information_screen.css';
 
 const HomeScreenComponent = () => {
@@ -38,11 +38,10 @@ const HomeScreenComponent = () => {
 
     return (
         <div className="wrapper-home-screen">
-            <div class="content">
-                <div class="content__container">
-                    <p class="content__container__text"></p>
-                    <ul class="content__container__list">
-                        <li class="content__container__list__item">
+            <div className="content">
+                <div className="content__container">
+                    <ul className="content__container__list">
+                        <li className="content__container__list__item">
                             <div className={`wrapper ${animationTriggered ? 'animate' : ''}`}
                                 id='home-screen'>
                                 <div className='letters'>
@@ -50,7 +49,7 @@ const HomeScreenComponent = () => {
                                 </div>
                             </div>
                         </li>
-                        <li class="content__container__list__item">
+                        <li className="content__container__list__item">
                             <div className={`wrapper ${animationTriggered ? 'animate' : ''}`}
                                 id='home-screen'>
                                 <div className='letters'>
@@ -58,7 +57,7 @@ const HomeScreenComponent = () => {
                                 </div>
                             </div>
                         </li>
-                        <li class="content__container__list__item">
+                        <li className="content__container__list__item">
                             <div className={`wrapper ${animationTriggered ? 'animate' : ''}`}
                                 id='home-screen'>
                                 <div className='letters'>
@@ -66,7 +65,7 @@ const HomeScreenComponent = () => {
                                 </div>
                             </div>
                         </li>
-                        <li class="content__container__list__item">
+                        <li className="content__container__list__item">
                             <div className={`wrapper ${animationTriggered ? 'animate' : ''}`}
                                 id='home-screen'>
                                 <div className='letters'>

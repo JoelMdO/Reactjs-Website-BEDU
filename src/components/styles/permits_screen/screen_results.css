@@ -2,13 +2,13 @@
     width: 5vw;
     height: 3vh;
     font-family: 'IBM Plex Sans', sans-serif;
-    font-size: 15px;
+    font-weight: 600;
+    font-size: 25px;
     color: black;
     background-color: #37FF06;
     position: absolute;
     bottom: 25px;
     right: 50px;
-
 }
 
 .clock {
@@ -49,7 +49,6 @@
     left: 20px;
     width: 5vw;
     height: 5vh;
-
 }
 
 .table-board {
@@ -60,14 +59,14 @@
 .table-titles {
     color: #37FF06;
     font-family: 'IBM Plex Sans', sans-serif;
-    font-size: 24px;
+    font-size: 30px;
     letter-spacing: 9px;
 }
 
 .table-row {
     color: white;
     font-family: 'IBM Plex Sans', sans-serif;
-    font-size: 24px;
+    font-size: 30px;
     text-align: left;
     letter-spacing: 9px;
 }

@@ -12,8 +12,10 @@ const ScreenResults = () => {
     ///obtain data from store (type = country, signin details)
     const finalbuttonClicked = useSelector((state) => state.buttonClicked);
     const finaltype = useSelector((state) => state.type);
-    const storetoken = useSelector((state) => state.token);
-    const finaltoken = storetoken.jwt;
+    const storetoken = localStorage.getItem('token:');
+    console.log(`storeToken`, storetoken);
+    let finaltoken = storetoken ? storetoken.jwt : '';
+
     const [showScreen, setShowScreen] = useState([true]);
     const [getData, setGetData] = useState([]);
     //aiport selection as per country type 
@@ -46,39 +48,32 @@ const ScreenResults = () => {
             var airport = '';
             break;
     }
-    const url = `${process.env.REACT_APP_HOST}/airport/${airport}`;
+    // const url = `https://nodejs-api-airportsdb.uc.r.appspot.com/airport/${airport}`;
+    const url = `http://localhost:8080/airport/${airport}`;
 
-    useEffect(async () => {
-        if (finalbuttonClicked && finaltype && finaltoken) {
-            const token = {
-                method: "GET",
-                headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${finaltoken}` },
+    const fetchData = async () => {
+        try {
+            let response;
+            if (finalbuttonClicked && finaltype && finaltoken !== '') {
+                const token = {
+                    method: "GET",
+                    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${finaltoken}` },
+                };
+                response = await fetch(url, token);
+            } else {
+                response = await fetch(url);
             }
-
-            await fetch(url, token)
-                .then((response) => response.json())
-                .then((data) => {
-
-                    setGetData(data);
-                })
-                .catch((e) => {
-
-                });
-
-        } else {
-            fetch(url)
-                .then((response) => response.json())
-                .then((data) => {
-
-                    setGetData(data);
-                })
-                .catch((e) => {
-
-                });
+            const data = await response.json();
+            setGetData(data);
+        } catch (error) {
+            console.error('Error fetching data', error);
+            setGetData(error);
         }
-    }, [finalbuttonClicked, finaltype, url]);
+    };
 
-
+    useEffect(() => {
+        fetchData();
+    }, [finalbuttonClicked, finaltype, finaltoken, url]);
 
     const handleClose = () => {
         setShowScreen(false);

@@ -9,8 +9,8 @@
 
 .main-page-background-login {
     position: absolute;
-    width: 100%;
-    height: 100%;
+    width: 99vw;
+    height: 98.5vh;
     object-fit: contain;
     object-position: right;
     background-color: black;

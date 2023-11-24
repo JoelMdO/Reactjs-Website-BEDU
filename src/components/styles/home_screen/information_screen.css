@@ -2,28 +2,25 @@
     position: absolute;
     top: 45%;
     left: 50%;
-    width: 55vw;
     transform: translate(-50%, -50%);
-    height: fit-content;
     overflow: hidden;
     font-family: "Lato", sans-serif;
+    width: 55vw;
+    height: fit-content;
     font-size: 35px;
     line-height: 45px;
 }
 
 .content__container {
-    font-weight: 600;
     overflow: hidden;
+    font-weight: 600;
     height: 40px;
     padding: 0 40px;
 }
 
 .content__container:before {
     content: url(../../../assets/takeofficon.svg);
-    left: 5px;
-}
-
-.content__container:before {
+    left: 135px;
     position: absolute;
     top: 0;
     font-size: 42px;
@@ -36,29 +33,24 @@
     animation-iteration-count: infinite;
 }
 
-.content__container__text {
-    display: block;
-    float: left;
-    margin: 0;
-}
-
 .content__container__list {
-    margin-top: 0;
-    padding-left: 110px;
     text-align: left;
     list-style: none;
-    -webkit-animation-name: change;
-    -webkit-animation-duration: 10s;
+    -webkit-animation-name: opacity;
+    -webkit-animation-duration: 2s;
     -webkit-animation-iteration-count: infinite;
     animation-name: change;
     animation-duration: 10s;
     animation-iteration-count: infinite;
+    margin-top: 0;
+    padding-left: 110px;
 }
 
 .content__container__list__item {
     line-height: 40px;
     margin: 0;
 }
+
 
 @-webkit-keyframes opacity {
 

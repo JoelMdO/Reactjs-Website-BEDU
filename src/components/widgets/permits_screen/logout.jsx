@@ -12,6 +12,7 @@ const Logout = () => {
     const handleClick = () => {
         navigate('/');
         dispatch(logout(true, null));
+        localStorage.clear();
     }
 
     return (

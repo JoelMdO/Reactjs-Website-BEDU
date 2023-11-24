@@ -25,7 +25,7 @@ export const setEmail = (email) => ({
 });
 
 
-export const getToken = (token) => ({
+export const setToken = (token) => ({
     type: 'GET_TOKEN',
     payload: token,
 });

@@ -21,9 +21,6 @@ const LoginTextField = () => {
         dispatch(setUser(userValue));
         dispatch(setPassword(passwordValue));
         setShowAnswerPage(true);
-        console.log('User:', userValue, 'password:', passwordValue);
-        passwordValue = '';
-        userValue = '';
     };
 
     return (

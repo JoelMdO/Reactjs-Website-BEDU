@@ -23,7 +23,7 @@ const reducer = (state = initialState, action) => {
             return { ...state, password: action.payload };
         case 'SET_EMAIL':
             return { ...state, email: action.payload };
-        case 'GET_TOKEN':
+        case 'SET_TOKEN':
             return { ...state, token: action.payload };
         case 'GET_SCREENS':
             return { ...state, toShow: action.payload };
